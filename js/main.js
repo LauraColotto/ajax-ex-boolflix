@@ -111,7 +111,7 @@ function renderTv(series){
       "name": series[i].name,
       "original_name": series[i].original_name,
       "lang": series[i].original_language,
-      "vote": Math.ceil(parseInt(movies[i].vote_count)/2)
+      "vote": Math.ceil(parseInt(series[i].vote_count)/2)
     };
 
     var html = templateTv(context);

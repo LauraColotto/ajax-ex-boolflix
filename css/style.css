@@ -1,0 +1,16 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+
+.fas{
+  display: none;
+}
+
+.far{
+  display: none;
+}

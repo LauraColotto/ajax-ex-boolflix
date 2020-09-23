@@ -97,7 +97,7 @@ function renderMovie(movies){
     var context = {
       "title": movies[i].title,
       "title_original": movies[i].original_title,
-      "lang": movies[i].original_language,
+      "lang": bandierine(movies[i].original_language),
       "vote": stelline(movies[i].vote_average)
     };
 
@@ -106,6 +106,7 @@ function renderMovie(movies){
   };
 
 };
+
 
 
 // Funzione di stampo nell'html dei risultati di ricerca delle serie TV
@@ -119,7 +120,7 @@ function renderTv(series){
     var context = {
       "name": series[i].name,
       "original_name": series[i].original_name,
-      "lang": series[i].original_language,
+      "lang": bandierine(series[i].original_language),
       "vote": stelline(series[i].vote_average)
     };
 
@@ -129,6 +130,22 @@ function renderTv(series){
 
 };
 
+
+// Funzione bandierine
+
+function bandierine(language){
+
+  if (language == "en"){
+    language = "gb";
+  }
+  
+  var lingua = "<img src='https://www.countryflags.io/" + language + "/flat/24.png'>";
+  return lingua;
+
+}
+
+
+// Funzione stelline
 
 function stelline(vote){
   var voto = Math.ceil(vote/2);

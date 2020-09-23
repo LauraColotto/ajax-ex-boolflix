@@ -3,30 +3,37 @@ $(document).ready(function() {
 
 // Setto la barra di ricerca
 
-  // Funzione di ricerca attraverso il tasto "search"
+  // Inizializzo la ricerca attraverso il tasto "search"
 
   $("#bottone-ricerca").click(
     function(){
-      search = $("#search").val();
-      callFilm();
-      callTv();
+      search();
     }
   );
 
-  // Funzione di ricerca attraverso il tasto invio
+  // Inizializzo la ricerca attraverso il tasto invio
 
   $("#search").keyup(
     function(e){
       if (e.which == 13) {
-        search = $("#search").val();
-        callFilm();
-        callTv();
+        search();
       }
     }
   );
 
 
 });
+
+
+// Funzione di  ricerca
+
+function search(){
+  $("#lista-film").html("");
+  $("#lista-tv").html("");
+  searchBarr = $("#search").val();
+  callFilm();
+  callTv();
+}
 
 
 // Funzione di chiamata Ajax films
@@ -37,7 +44,7 @@ function callFilm(){
       "url": "https://api.themoviedb.org/3/search/movie",
       "data": {
         "api_key": "c73ce97358abda99e92ea4ca6b449349",
-        "query": search,
+        "query": searchBarr,
         "language": "it-IT",
         },
       "method": "GET",
@@ -61,7 +68,7 @@ function callTv(){
       "url": "https://api.themoviedb.org/3/search/tv",
       "data": {
         "api_key": "c73ce97358abda99e92ea4ca6b449349",
-        "query": search,
+        "query": searchBarr,
         "language": "it-IT",
         },
       "method": "GET",
@@ -91,7 +98,7 @@ function renderMovie(movies){
       "title": movies[i].title,
       "title_original": movies[i].original_title,
       "lang": movies[i].original_language,
-      "vote": Math.ceil(parseInt(movies[i].vote_average)/2)
+      "vote": stelline(movies[i].vote_average)
     };
 
     var html = templateFilms(context);
@@ -99,6 +106,8 @@ function renderMovie(movies){
   };
 
 };
+
+
 // Funzione di stampo nell'html dei risultati di ricerca delle serie TV
 
 var sourceTv = $("#tv-template").html();
@@ -111,7 +120,7 @@ function renderTv(series){
       "name": series[i].name,
       "original_name": series[i].original_name,
       "lang": series[i].original_language,
-      "vote": Math.ceil(parseInt(series[i].vote_count)/2)
+      "vote": stelline(series[i].vote_average)
     };
 
     var html = templateTv(context);
@@ -121,25 +130,20 @@ function renderTv(series){
 };
 
 
+function stelline(vote){
+  var voto = Math.ceil(vote/2);
 
-// function star(){
-//    vote = Math.ceil(parseInt(movies[i].vote_average)/2);
-//
-//    for (i = 0; i< vote ; i++) {
-//      $(".voto").append(stellina);
-//      $("stellina").show();
-//    }
+  var stellinaPiena ="<i class='fas fa-star'></i>";
+  var stellinaVuota ="<i class='far fa-star'></i>";
+  var stars = "";
 
-
-
-
-
-
-
-// switch (stelline){
-//   case 1 {
-//     ($(".far fa-star").show())*5;
-//   }
-// }
-
-// Math.ceil(parseInt(movies[i].vote_average)/2)
+      for(var i = 1; i <= 5; i++){
+       if(i <= voto){
+        var star = stellinaPiena;
+       }else{
+         var star = stellinaVuota;
+       }
+      stars += star;
+      };
+      return stars;
+  };

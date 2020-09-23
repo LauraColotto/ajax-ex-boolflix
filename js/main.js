@@ -74,7 +74,7 @@ function callTv(){
       "method": "GET",
       "success": function(data) {
         console.log(data.results);
-        renderTv(data.results);
+        renderMovie(data.results);
 
         },
       "error": function(err) {
@@ -95,6 +95,8 @@ function renderMovie(movies){
 
   for (var i =0; i< movies.length; i++) {
     var context = {
+      "name": movies[i].name,
+      "original_name": movies[i].original_name,
       "title": movies[i].title,
       "title_original": movies[i].original_title,
       "lang": bandierine(movies[i].original_language),
@@ -111,24 +113,24 @@ function renderMovie(movies){
 
 // Funzione di stampo nell'html dei risultati di ricerca delle serie TV
 
-var sourceTv = $("#tv-template").html();
-var templateTv = Handlebars.compile(sourceTv);
-
-function renderTv(series){
-
-  for (var i =0; i< series.length; i++) {
-    var context = {
-      "name": series[i].name,
-      "original_name": series[i].original_name,
-      "lang": bandierine(series[i].original_language),
-      "vote": stelline(series[i].vote_average)
-    };
-
-    var html = templateTv(context);
-    $("#lista-tv").append(html);
-  };
-
-};
+// var sourceTv = $("#tv-template").html();
+// var templateTv = Handlebars.compile(sourceTv);
+//
+// function renderTv(series){
+//
+//   for (var i =0; i< series.length; i++) {
+//     var context = {
+//       "name": series[i].name,
+//       "original_name": series[i].original_name,
+//       "lang": bandierine(series[i].original_language),
+//       "vote": stelline(series[i].vote_average)
+//     };
+//
+//     var html = templateTv(context);
+//     $("#lista-tv").append(html);
+//   };
+//
+// };
 
 
 // Funzione bandierine
@@ -138,7 +140,7 @@ function bandierine(language){
   if (language == "en"){
     language = "gb";
   }
-  
+
   var lingua = "<img src='https://www.countryflags.io/" + language + "/flat/24.png'>";
   return lingua;
 

@@ -5,11 +5,17 @@
 }
 
 
+
+.page-wrapper{
+  background-color: black;
+  height: 100vh;
+}
+
 /* header */
 
 header{
   display: flex;
-  height: 80px;
+  height: 100px;
   width: 100%;
   background-color: black;
 }
@@ -18,8 +24,8 @@ header{
   display: flex;
   align-items: center;
   width: 70%;
-  height: 80px;
-  padding-left: 30px;
+  height: 100px;
+  padding-left: 45px;
 }
 #header-dx{
   display: flex;
@@ -27,7 +33,7 @@ header{
   padding-right: 45px;
   justify-content: flex-end;
   width: 30%;
-  height: 80px;
+  height: 100px;
   /* background-color: green; */
 }
 
@@ -36,8 +42,7 @@ header{
 
 .logo{
   max-height: 100px;
-  padding: 15px;
-  line-height: 80px;
+  padding: 15px 0px;
 }
 
 
@@ -62,4 +67,26 @@ header{
 
 [placeholder]{
   font-style: italic;
+}
+
+
+/* Lista risultati */
+
+main{
+  /* display: flex; */
+  color: white;
+  padding: 30px 45px;
+}
+
+ul{
+  display: flex;
+  padding: 30px 0px;
+  width: 100%;
+  overflow-x: auto;
+  list-style: none;
+}
+
+li{
+  margin: 0px 30px;
+  color: white;
 }

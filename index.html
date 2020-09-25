@@ -12,28 +12,36 @@
   <title>Boolflix</title>
 </head>
 <body>
-  <header >
-    <div id="header-sx">
-      <img class="logo" src="img/boolflix_logo.png" alt="logo">
-    </div>
-    <div id="header-dx">
-      <input type="search" id="search" placeholder="Inserisci un titolo...">
-      <button id="bottone-ricerca">SEARCH</button>
-    </div>
+  <div class="page-wrapper">
+    <!-- Header -->
+    <header >
+      <!-- Header SX con Logo -->
+      <div id="header-sx">
+        <img class="logo" src="img/boolflix_logo.png" alt="logo">
+      </div>
 
-  </header>
+      <!-- Header dx con barra di ricerca -->
+      <div id="header-dx">
+        <!-- Barra di ricerca -->
+        <input type="search" id="search" placeholder="Inserisci un titolo...">
+        <!-- Bottone di ricerca -->
+        <button id="bottone-ricerca">SEARCH</button>
+      </div>
 
-  <!-- <input type="search" id="search">
+    </header>
 
-  <button id="bottone-ricerca">Search</button> -->
+    <main>
+      <!-- Lista Films -->
+      <h2>Films</h2>
+      <ul id="lista-film"></ul>
 
-  <ul id="lista-film">
+      <!-- Lista Tv -->
+      <h2>Serie TV</h2>
+      <ul id="lista-tv"></ul>
 
-  </ul>
-  <ul id="lista-tv">
+    </main>
 
-  </ul>
-
+  </div>
 
   <!-- Templates  -->
 

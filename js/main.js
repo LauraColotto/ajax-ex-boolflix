@@ -38,19 +38,19 @@ function search(){
 
 // Funzione di chiamata Ajax films
 
-function callData(type, searchString){
+function callData(type, searchBarr){
   $.ajax(
     {
       "url": "https://api.themoviedb.org/3/search/" + type,
       "data": {
         "api_key": "c73ce97358abda99e92ea4ca6b449349",
-        "query": searchString,
+        "query": searchBarr,
         "language": "it-IT",
         },
       "method": "GET",
       "success": function(data) {
         console.log(data.results);
-        renderResult(data.results);
+        renderResult(type, data.results);
 
         },
       "error": function(err) {
@@ -108,9 +108,9 @@ function renderResult(type, result){
     }
 
     if (result[i].poster_path == null) {
-      var poster = "img/903637.jpg";
+      var poster = "img/no_poster.png";
     } else {
-      var poster ="https://image.tmdb.org/t/p/185" + result[i].poster_path;
+      var poster ="https://image.tmdb.org/t/p/w185/" + result[i].poster_path;
     }
 
 

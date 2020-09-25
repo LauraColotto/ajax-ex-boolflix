@@ -12,10 +12,20 @@
   <title>Boolflix</title>
 </head>
 <body>
+  <header >
+    <div id="header-sx">
+      <img class="logo" src="img/boolflix_logo.png" alt="logo">
+    </div>
+    <div id="header-dx">
+      <input type="search" id="search" placeholder="Inserisci un titolo...">
+      <button id="bottone-ricerca">SEARCH</button>
+    </div>
 
-  <input type="search" id="search">
+  </header>
 
-  <button id="bottone-ricerca">Search</button>
+  <!-- <input type="search" id="search">
+
+  <button id="bottone-ricerca">Search</button> -->
 
   <ul id="lista-film">
 
@@ -26,8 +36,6 @@
 
 
   <!-- Templates  -->
-
-    <!-- Movies-template -->
 
 
       <script id="movie-template" type="text/x-handlebars-template">
@@ -40,19 +48,6 @@
           <p>{{type}}</p>
         </li>
       </script>
-
-
-    <!-- TV-template -->
-
-      <!-- <script id="tv-template" type="text/x-handlebars-template">
-
-        <li><h3>{{name}}</h3>
-          <h4>Titolo Originale: {{original_name}}</h4>
-          <p>Lingua originiale: {{{lang}}}</p>
-          <p>Media voto: {{{vote}}}</p>
-        </li>
-      </script> -->
-
 
 
 

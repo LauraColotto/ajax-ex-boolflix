@@ -3,3 +3,63 @@
   margin: 0;
   padding: 0;
 }
+
+
+/* header */
+
+header{
+  display: flex;
+  height: 80px;
+  width: 100%;
+  background-color: black;
+}
+
+#header-sx{
+  display: flex;
+  align-items: center;
+  width: 70%;
+  height: 80px;
+  padding-left: 30px;
+}
+#header-dx{
+  display: flex;
+  align-items: center;
+  padding-right: 45px;
+  justify-content: flex-end;
+  width: 30%;
+  height: 80px;
+  /* background-color: green; */
+}
+
+
+/* Logo */
+
+.logo{
+  max-height: 100px;
+  padding: 15px;
+  line-height: 80px;
+}
+
+
+/* Barra di ricerca */
+
+#search{
+  height: 30px;
+  width: 300px;
+  padding: 5px;
+  border: none;
+}
+
+#bottone-ricerca{
+  height: 30px;
+  width: 100px;
+  padding: 8px;
+  margin-left: 8px;
+  background-color: red;
+  color: white;
+  border: none
+}
+
+[placeholder]{
+  font-style: italic;
+}

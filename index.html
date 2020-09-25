@@ -19,8 +19,8 @@
 
   <ul id="lista-film">
 
-  <!-- </ul>
-  <ul id="lista-tv"> -->
+  </ul>
+  <ul id="lista-tv">
 
   </ul>
 
@@ -33,11 +33,11 @@
       <script id="movie-template" type="text/x-handlebars-template">
 
         <li><h3>{{title}}</h3>
-          <h3>{{name}}</h3>
-          <h4>Titolo Originale: {{original_name}}</h4>
-          <h4>Titolo Originale: {{original_title}}</h4>
+          <div><img src="{{poster}}" alt="{{title}}"></div>
+          <h4>Titolo Originale: {{title_original}}</h4>
           <p>Lingua originiale: {{{lang}}}</p>
           <p>Media voto: {{{vote}}}</p>
+          <p>{{type}}</p>
         </li>
       </script>
 

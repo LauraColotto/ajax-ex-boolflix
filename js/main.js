@@ -31,26 +31,26 @@ function search(){
   $("#lista-film").html("");
   $("#lista-tv").html("");
   searchBarr = $("#search").val();
-  callFilm();
-  callTv();
+  callData("movie", searchBarr);
+  callData("tv", searchBarr);
 }
 
 
 // Funzione di chiamata Ajax films
 
-function callFilm(){
+function callData(type, searchString){
   $.ajax(
     {
-      "url": "https://api.themoviedb.org/3/search/movie",
+      "url": "https://api.themoviedb.org/3/search/" + type,
       "data": {
         "api_key": "c73ce97358abda99e92ea4ca6b449349",
-        "query": searchBarr,
+        "query": searchString,
         "language": "it-IT",
         },
       "method": "GET",
       "success": function(data) {
         console.log(data.results);
-        renderMovie(data.results);
+        renderResult(data.results);
 
         },
       "error": function(err) {
@@ -61,50 +61,71 @@ function callFilm(){
 };
 
 // Funzione  di chiamata Ajax serie Tv
-
-function callTv(){
-  $.ajax(
-    {
-      "url": "https://api.themoviedb.org/3/search/tv",
-      "data": {
-        "api_key": "c73ce97358abda99e92ea4ca6b449349",
-        "query": searchBarr,
-        "language": "it-IT",
-        },
-      "method": "GET",
-      "success": function(data) {
-        console.log(data.results);
-        renderMovie(data.results);
-
-        },
-      "error": function(err) {
-          alert("Errore!");
-        }
-      }
-  );
-};
+//
+// function callTv(type, searchString){
+//   $.ajax(
+//     {
+//       "url": "https://api.themoviedb.org/3/search/" + type,
+//       "data": {
+//         "api_key": "c73ce97358abda99e92ea4ca6b449349",
+//         "query": searchString,
+//         "language": "it-IT",
+//         },
+//       "method": "GET",
+//       "success": function(data) {
+//         console.log(data.results);
+//         renderResult(data.results);
+//
+//         },
+//       "error": function(err) {
+//           alert("Errore!");
+//         }
+//       }
+//   );
+// };
 
 
 
 // Funzione di stampo nell'html dei risultati di ricerca dei Films
+function renderResult(type, result){
 
-var sourceFilm = $("#movie-template").html();
-var templateFilms = Handlebars.compile(sourceFilm);
+  var source = $("#movie-template").html();
+  var template = Handlebars.compile(source);
 
-function renderMovie(movies){
 
-  for (var i =0; i< movies.length; i++) {
+  for (var i =0; i< result.length; i++) {
+
+    var title, original_title, container;
+
+    if (type == "movie") {
+      title = result[i].title;
+      original_title = result[i].original_title;
+      container = $("#lista-film");
+    } else if (type == "tv") {
+      title = result[i].name;
+      original_title = result[i].original_name;
+      container = $("#lista-tv");
+    }
+
+    if (result[i].poster_path == null) {
+      var poster = "img/903637.jpg";
+    } else {
+      var poster ="https://image.tmdb.org/t/p/185" + result[i].poster_path;
+    }
+
+
+
     var context = {
-      "name": movies[i].name,
-      "original_name": movies[i].original_name,
-      "title": movies[i].title,
-      "title_original": movies[i].original_title,
-      "lang": bandierine(movies[i].original_language),
-      "vote": stelline(movies[i].vote_average)
+      "poster": poster,
+      "title": title,
+      "title_original": original_title,
+      "lang": bandierine(result[i].original_language),
+      "vote": stelline(result[i].vote_average),
+      "type" : type
     };
 
-    var html = templateFilms(context);
-    $("#lista-film").append(html);
+    var html = template(context);
+    container.append(html);
   };
 
 };
@@ -131,7 +152,7 @@ function renderMovie(movies){
 //   };
 //
 // };
-
+//
 
 // Funzione bandierine
 

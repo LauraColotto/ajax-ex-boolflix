@@ -2,9 +2,30 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: 'Poppins', sans-serif;
 }
 
 
+h2{
+  margin: 30px 0;
+  font-size: 35px;
+}
+
+h3{
+  text-align: center;
+  margin: 15px auto;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+h4{
+  /* margin: 40px auto; */
+  font-weight: 400;
+}
+
+p{
+  margin-top: 15px;
+}
 
 .page-wrapper{
   background-color: black;
@@ -74,6 +95,7 @@ header{
 
 main{
   /* display: flex; */
+  background-color: black;
   color: white;
   padding: 30px 45px;
 }
@@ -83,10 +105,90 @@ ul{
   padding: 30px 0px;
   width: 100%;
   overflow-x: auto;
+  overflow-y: hidden;
   list-style: none;
 }
 
 li{
+  position: relative;
   margin: 0px 30px;
   color: white;
+
+
+}
+
+.poster{
+  height: 513px;
+
+}
+
+.poster img{
+  object-fit: cover;
+}
+
+.info{
+  position: absolute;
+  display: none;
+  top: 0;
+  left: 0;
+  height: 513px;
+  width: 342px;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.poster:hover .info{
+  display: block;
+}
+
+.titolo{
+  height: 100px;
+}
+
+.paragrafi {
+  height: calc(100% - 100px);
+  bottom: 0;
+  overflow-y: auto;
+}
+
+.type{
+  display: none;
+}
+
+
+/* Scrollbar */
+
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-button {
+  width: 3px;
+  height: 3px;
+}
+::-webkit-scrollbar-thumb {
+  background: #cccccc;
+  border: 0px none #ffffff;
+  border-radius: 56px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #ffffff;
+}
+::-webkit-scrollbar-track {
+  background: #6b6b6b;
+  border: 0px none #ffffff;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #6b6b6b;
+}
+::-webkit-scrollbar-track:active {
+  background: #6b6b6b;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
 }

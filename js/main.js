@@ -27,6 +27,8 @@ $(document).ready(function() {
 
 // Funzione di  ricerca
 
+
+
 function search(){
   $("#lista-film").html("");
   $("#lista-tv").html("");
@@ -36,7 +38,7 @@ function search(){
 }
 
 
-// Funzione di chiamata Ajax films
+// Funzione di chiamata Ajax sia per i films che per le serie tv
 
 function callData(type, searchBarr){
   $.ajax(
@@ -49,7 +51,7 @@ function callData(type, searchBarr){
         },
       "method": "GET",
       "success": function(data) {
-        console.log(data.results);
+        //console.log(data.results);
         renderResult(type, data.results);
 
         },
@@ -60,33 +62,35 @@ function callData(type, searchBarr){
   );
 };
 
-// Funzione  di chiamata Ajax serie Tv
-//
-// function callTv(type, searchString){
+
+
+// Funzione di chiamata Ajax per i credits
+
+// function callCredits(type, movie_id){
 //   $.ajax(
 //     {
-//       "url": "https://api.themoviedb.org/3/search/" + type,
+//       "url": "https://api.themoviedb.org/3/" + type + "/" + movie_id + "/credits?",
 //       "data": {
 //         "api_key": "c73ce97358abda99e92ea4ca6b449349",
-//         "query": searchString,
-//         "language": "it-IT",
+//         "language": "it-IT"
 //         },
+//       async: false,
 //       "method": "GET",
 //       "success": function(data) {
-//         console.log(data.results);
-//         renderResult(data.results);
-//
+//         return data;
 //         },
 //       "error": function(err) {
 //           alert("Errore!");
 //         }
-//       }
+//     }
 //   );
+//   //console.log(risultato);
 // };
 
 
 
-// Funzione di stampo nell'html dei risultati di ricerca dei Films
+// Funzione di stampo nell'html dei risultati
+
 function renderResult(type, result){
 
   var source = $("#movie-template").html();
@@ -95,7 +99,9 @@ function renderResult(type, result){
 
   for (var i =0; i< result.length; i++) {
 
-    var title, original_title, container;
+    // Setto tre variabili per il titolo, il titolo originale ed il container di destinazione, siccome le chiavi cambiano da film a serie tv
+
+    var title, original_title, container, cast;
 
     if (type == "movie") {
       title = result[i].title;
@@ -107,18 +113,37 @@ function renderResult(type, result){
       container = $("#lista-tv");
     }
 
+    // Se il c'è o non c'è il poster...
+
     if (result[i].poster_path == null) {
       var poster = "img/no_poster.png";
     } else {
-      var poster ="https://image.tmdb.org/t/p/w185/" + result[i].poster_path;
+      var poster ="https://image.tmdb.org/t/p/w342/" + result[i].poster_path;
     }
 
 
+    // Faccio la chiamata per il cast
+
+    // var cast = callCredits(type, result[i].id);
+    // console.log(cast);
+    //
+    // var nomiCast;
+
+    /*for (var i =0; i< 5; i++){
+      nomiCast += cast[i].name;
+      nomiCast += " ,";
+    }*/
+
+
+
+    // Setto i placeholder di handelbars
 
     var context = {
       "poster": poster,
       "title": title,
       "title_original": original_title,
+      // "array_cast": nomiCast,
+      "overview": result[i].overview,
       "lang": bandierine(result[i].original_language),
       "vote": stelline(result[i].vote_average),
       "type" : type
@@ -131,28 +156,6 @@ function renderResult(type, result){
 };
 
 
-
-// Funzione di stampo nell'html dei risultati di ricerca delle serie TV
-
-// var sourceTv = $("#tv-template").html();
-// var templateTv = Handlebars.compile(sourceTv);
-//
-// function renderTv(series){
-//
-//   for (var i =0; i< series.length; i++) {
-//     var context = {
-//       "name": series[i].name,
-//       "original_name": series[i].original_name,
-//       "lang": bandierine(series[i].original_language),
-//       "vote": stelline(series[i].vote_average)
-//     };
-//
-//     var html = templateTv(context);
-//     $("#lista-tv").append(html);
-//   };
-//
-// };
-//
 
 // Funzione bandierine
 

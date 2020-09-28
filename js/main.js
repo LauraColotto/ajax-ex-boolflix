@@ -22,12 +22,37 @@ $(document).ready(function() {
   );
 
 
+  // Faccio un'autoscroll orizzontale al click sulle freccette
+
+
+
+  $(".fa-angle-right").click(
+    function(){
+      scrollo = $("#lista-film").scrollLeft();
+      newScroll =  $("#lista-film").scrollLeft(scrollo + 500);
+      scrollo += newScroll;
+      return scrollo;
+    }
+  );
+
+  $(".fa-angle-left").click(
+    function(){
+        scrollo = $("#lista-film").scrollLeft();
+        newScroll =  $("#lista-film").scrollLeft(scrollo - 500);
+        scrollo += newScroll;
+        return scrollo;
+    }
+  );
+
+
+
+
+
+
 });
 
 
 // Funzione di  ricerca
-
-
 
 function search(){
   $("#lista-film").html("");
